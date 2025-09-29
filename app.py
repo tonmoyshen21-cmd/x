@@ -9,7 +9,7 @@ load_dotenv()
 FB_PAGE_ID = os.getenv("FB_PAGE_ID")
 FB_ACCESS_TOKEN = os.getenv("FB_ACCESS_TOKEN")
 AI_API_KEY = os.getenv("AI_API_KEY")
-Prompt = os.getenv("Prompt")
+
 # Configure Google Generative AI
 genai.configure(api_key=AI_API_KEY)
 # for m in genai.list_models():
