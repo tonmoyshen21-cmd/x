@@ -62,7 +62,7 @@ if __name__ == "__main__":
         }
         response = requests.post(url, data=payload)
     except Exception as e:
-        Message = f"❌ Error: {e}"
+        Message = f"❌❌ Error FROM STORY: {e}"
         url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
         payload = {
             "chat_id": CHANNEL_USERNAME,
