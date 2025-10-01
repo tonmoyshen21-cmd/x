@@ -9,6 +9,8 @@ load_dotenv()
 FB_PAGE_ID = os.getenv("FB_PAGE_ID")
 FB_ACCESS_TOKEN = os.getenv("FB_ACCESS_TOKEN")
 AI_API_KEY = os.getenv("AI_API_KEY")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHANNEL_USERNAME = os.getenv("CHANNEL_USERNAME")
 
 # Configure Google Generative AI
 genai.configure(api_key=AI_API_KEY)
@@ -51,6 +53,20 @@ if __name__ == "__main__":
         # Log (optional)
         with open("post_log.txt", "a", encoding="utf-8") as f:
             f.write(f"{datetime.now().isoformat()} ------ {message}\n\n\n\n\n\n")
-
+            
+        Message = message
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+        payload = {
+            "chat_id": CHANNEL_USERNAME,
+            "text": Message
+        }
+        response = requests.post(url, data=payload)
     except Exception as e:
+        Message = f"❌ Error: {e}"
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+        payload = {
+            "chat_id": CHANNEL_USERNAME,
+            "text": Message
+        }
+        response = requests.post(url, data=payload)
         print(f"❌ Error: {e}")
